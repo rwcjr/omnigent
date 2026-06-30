@@ -78,7 +78,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { type Agent, useSessionAgent, useAgents } from "@/hooks/useAgents";
 import { agentDisplayLabel } from "@/components/AgentInfo";
-import { BRAIN_HARNESS_LABELS } from "@/lib/agentLabels";
+import { BRAIN_HARNESS_LABELS, useBrainHarnessLabels } from "@/lib/agentLabels";
 import { useConversations } from "@/hooks/useConversations";
 import { usePermissions } from "@/hooks/usePermissions";
 import type { CodexModelOption, SandboxStatus, Session, SessionStatus } from "@/lib/types";
@@ -3307,13 +3307,14 @@ export function composerHarnessLabel(
   modelPickerKind: NativeModelPickerKind | null,
   agentName: string | null | undefined,
   sessionHarness: string | null,
+  harnessLabels: Record<string, string> = BRAIN_HARNESS_LABELS,
 ): string | null {
   if (modelPickerKind === "claude") return "Claude";
   if (modelPickerKind === "codex") return "Codex";
   if (modelPickerKind === "cursor") return "Cursor";
   if (modelPickerKind === "opencode") return "OpenCode";
   const display = agentName ? agentDisplayLabel(agentName) : null;
-  const harness = sessionHarness ? (BRAIN_HARNESS_LABELS[sessionHarness] ?? null) : null;
+  const harness = sessionHarness ? (harnessLabels[sessionHarness] ?? null) : null;
   if (display && harness) return `${display} (${harness})`;
   return display ?? harness;
 }
@@ -3592,6 +3593,7 @@ export function Composer({
   // picker trigger owns model/effort now, so the identity moves here.
   const sessionHarness = useChatStore((s) => s.sessionHarness);
   const subAgentName = useChatStore((s) => s.subAgentName);
+  const brainHarnessLabels = useBrainHarnessLabels();
   const harnessLabel = composerHarnessLabel(
     modelPickerKind,
     // For a sub-agent (head) session, identify the head family being viewed
@@ -3602,6 +3604,7 @@ export function Composer({
       agents?.[0]?.name ??
       null,
     sessionHarness,
+    brainHarnessLabels,
   );
 
   // Preserve unsent text + file attachments per session so switching
