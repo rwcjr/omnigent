@@ -40,5 +40,7 @@ def test_preserves_existing_sections_and_adds_missing_optional_context() -> None
 def test_scaffolds_changelog_section_with_skip_default() -> None:
     formatted = pr_autoformat.format_body("Fix the important thing.")
     assert "## Changelog" in formatted
-    # The scaffolded section defaults to the `skip` sentinel.
-    assert formatted.rstrip().endswith("skip")
+    # The scaffolded Changelog section defaults to the `skip` sentinel. It sits
+    # above Coverage notes, so assert on the section body rather than the tail.
+    changelog = formatted.split("## Changelog", 1)[1].split("## ", 1)[0]
+    assert changelog.rstrip().endswith("skip")

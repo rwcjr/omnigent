@@ -58,14 +58,6 @@ use `N/A` for non-visual changes.
 - [ ] Existing tests cover this change
 - [ ] Not applicable
 
-## Coverage notes
-
-<!--
-Optional — but required if you checked "Manual verification completed" or
-"Not applicable" above. Describe what you verified manually, or why automated
-test coverage is not needed for this change.
--->
-
 ## Changelog
 
 <!--
@@ -85,3 +77,11 @@ A `skip` here is fine for chores — but a Breaking change must always be announ
 -->
 
 skip
+
+## Coverage notes
+
+<!--
+Optional — but required if you checked "Manual verification completed" or
+"Not applicable" above. Describe what you verified manually, or why automated
+test coverage is not needed for this change.
+-->

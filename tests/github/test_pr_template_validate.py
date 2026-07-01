@@ -57,7 +57,7 @@ def _valid_body(
 ## Type of change
 {type_checkboxes}
 ## Test coverage
-{test_checkboxes}{notes_section}{changelog_section}"""
+{test_checkboxes}{changelog_section}{notes_section}"""
 
 
 _BREAKING_TYPE = """

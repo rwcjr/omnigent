@@ -66,16 +66,16 @@ def format_body(body: str) -> str:
     body = _append_section(body, "Test coverage", _checkbox_block(TEST_LABELS))
     body = _append_section(
         body,
-        "Coverage notes",
-        "<!-- Optional; required if you checked 'Manual verification completed' "
-        "or 'Not applicable' above. -->",
-    )
-    body = _append_section(
-        body,
         "Changelog",
         "<!-- One or more '<Category>: description' lines (Added | Changed | "
         "Fixed | Deprecated | Removed | Security) for user-facing changes, or "
         "'skip'. A Breaking change must always be announced. -->\n\nskip",
+    )
+    body = _append_section(
+        body,
+        "Coverage notes",
+        "<!-- Optional; required if you checked 'Manual verification completed' "
+        "or 'Not applicable' above. -->",
     )
     return body.rstrip() + "\n"
 
